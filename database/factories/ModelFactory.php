@@ -37,7 +37,8 @@ $factory->define(App\Member::class, function (Faker\Generator $faker) {
         'post_code'=>rand(1000,100000),
         'address'=>$faker->address,
         'look_up'=>$faker->name,
-        'uniform_number'=>rand(1000,100000)
+        'uniform_number'=>rand(1000,100000),
+        'status'=>'subscribed'
      ];
 });
 

@@ -24,6 +24,7 @@ class CreateMembersTable extends Migration
             $table->string('address')->default('');
             $table->string('look_up')->default(''); // 抬頭
             $table->string('uniform_number')->default(''); // 統一編號
+            $table->string('status')->default('');
             $table->timestamps();
         });
     }

@@ -9,6 +9,19 @@ class Member extends Model
     protected $table = 'members';
 
 
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'telephone',
+        'country',
+        'post_code',
+        'address',
+        'look_up',
+        'uniform_number',
+        'status',
+    ];
+
     public static function getNameById($id)
     {
         $member = self::find($id);
@@ -16,6 +29,15 @@ class Member extends Model
         return $fullName;
     }
 
+    public static function test()
+    {
+
+    }
+
+    public function order()
+    {
+        return $this->hasMany('App\Order');
+    }
 
 }
 

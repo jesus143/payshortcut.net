@@ -17,11 +17,13 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-
-
 Route::get('/test', function() {
     return ['name' => 'Taylor'];
 });
 
+Route::post('member/create', 'MemberController@apiStore');
+Route::post('order/create', 'OrderController@apiStore');
+Route::get('member/get', 'MemberController@apiGetMember');
+Route::get('member/get/order', 'MemberController@apiGetMemberOrder');
 
-Route::get('member/create/{id?}', 'MemberController@apiStore');
+

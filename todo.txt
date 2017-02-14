@@ -1,0 +1,14 @@
+Insert new member
+  - Detect if exist via email then just get the member id number
+  - Detect if not exist then insert all information for member then return member id
+  - Insert new order id with member id
+  - Display all the member
+  - Display member details with orders with button refund
+
+
+
+
+
+
+
+

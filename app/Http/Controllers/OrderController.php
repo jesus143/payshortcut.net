@@ -88,4 +88,15 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function apiStore(Request $request)
+    {
+        $orderInfoArray  =  $request->all();
+
+        // create new order with member id
+        $order = Order::create($orderInfoArray);
+
+        // return new created order
+        return $order;
+    }
 }
