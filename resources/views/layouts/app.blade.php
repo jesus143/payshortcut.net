@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{url('public/css/app.css')}}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -19,6 +20,9 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+
+
 </head>
 <body>
     <div id="app">
@@ -83,5 +87,16 @@
 
     <!-- Scripts -->
     <script src="{{url('public/js/app.js')}}"></script>
+
+    <script src="//code.jquery.com/jquery-1.12.4.js"> </script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"> </script>
+
+
+    | <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+
 </body>
 </html>

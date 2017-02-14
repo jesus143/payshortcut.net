@@ -17,4 +17,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->middleware('web');
+
+
+Route::get('member/test', 'MemberController@testing');
+
+
+// resource
+Route::resource('member', 'MemberController');
+Route::resource('order', 'OrderController');
+
