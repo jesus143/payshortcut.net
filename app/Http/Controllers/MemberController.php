@@ -124,10 +124,11 @@ class MemberController extends Controller
         if($totalMember  < 1) {
             $member = Member::create($memberInfoArray);
         } else {
-            Member::where('email', $member_email)->update($memberInfoArray);
-
+            Member::where('email', $member_email)->update($memberInfoArray); 
         }
+
         $member = Member::where('email', $member_email)->first();
+
         return $member;
     }
 

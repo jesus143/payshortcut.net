@@ -11,6 +11,8 @@ class Order extends Model
     protected $fillable = [
         'member_id',
         'status',
+        'title',
+        'description',
         'merchant_id',
         'version',
         'response_type',
@@ -23,6 +25,8 @@ class Order extends Model
         'trade_no',
         'token_value',
         'token_life',
+        'content_post',
+        'content_session',
     ];
 
     public function member()

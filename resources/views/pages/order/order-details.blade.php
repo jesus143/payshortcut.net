@@ -18,8 +18,11 @@
 
                             @foreach ($order as $field => $value)
                                 <tr>
-                                    <td>{{changeDashToSpaceUcLetter($field)}}</td>
-                                    <td>{{$value}}</td>
+
+                                    @if(!in_array($field, ['content_post', 'content_session'])) 
+                                        <td>{{changeDashToSpaceUcLetter($field)}}</td>
+                                        <td>{{$value}}</td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>
