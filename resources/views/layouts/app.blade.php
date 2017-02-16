@@ -84,17 +84,17 @@
 
         @yield('content')
     </div>
-
     <!-- Scripts -->
     <script src="{{url('public/js/app.js')}}"></script>
-
     <script src="//code.jquery.com/jquery-1.12.4.js"> </script>
+    <script src="{{url('public/js/custom_js.js')}}"></script>
     <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"> </script>
 
-
-    | <script>
+    <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+            $('#example').DataTable( {
+                "order": [[ 0, "desc" ]]
+            });
         } );
     </script>
 

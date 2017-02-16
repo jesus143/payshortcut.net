@@ -12,3 +12,7 @@ Insert new member
 
 
 
+Connect the payshortcut api inert member and order when success order and this should work both agree payment and credit card payment
+Create settings for merchant id. hash key, haskey iv for refund
+
+

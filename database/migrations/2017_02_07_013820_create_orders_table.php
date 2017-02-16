@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-           $table->integer('member_id')->unsigned(); 
+            $table->integer('member_id')->unsigned();
             $table->string('title')->default("");
             $table->string('description')->default("");
             $table->string('status')->default("");
@@ -30,9 +30,10 @@ class CreateOrdersTable extends Migration
             $table->string('hash_iv')->default("");
             $table->string('trade_no')->default("");
             $table->string('token_value')->default("");
-            $table->string('token_life')->default(""); 
-            $table->text('content_post');
-            $table->text('content_session');
+            $table->string('token_life')->default("");
+            $table->text('content_post')->nullable();
+            $table->text('content_session')->nullable();
+            $table->text('refund_response')->nullable();
             $table->timestamps();
         });
     }

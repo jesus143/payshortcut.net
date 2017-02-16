@@ -62,3 +62,19 @@ $factory->define(App\Order::class, function (Faker\Generator $faker) {
 
     ];
 });
+$factory->define(App\Setting::class, function (Faker\Generator $faker) {
+
+    $arrayDate = [
+        'marchant_id' => 'MS3709347',
+        'hash_key' => 'MS3709347',
+        'hash_iv' => 't8jUsqArVyJOPZcF',
+        'refund_sandbox' => 'yes'
+    ];
+
+    foreach($arrayDate as $key => $value) {
+        return [
+            'key' => $key,
+            'value' => $value,
+        ];
+    }
+});

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Refund;
 use App\Order;
 
-class OrderController extends Controller
+class RefundController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-
-        $orders = Order::orderBy('id', 'desc')->get();
-
-
-
-        return view('pages/order/order', compact('orders'));
-
+        //
     }
 
     /**
@@ -41,7 +36,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -52,9 +47,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $order = Order::find($id)->toArray();
-
-        return view('pages/order/order-details', compact('order', 'content_post'));
+        //
     }
 
     /**
@@ -91,14 +84,19 @@ class OrderController extends Controller
         //
     }
 
-    public function apiStore(Request $request)
+    public function execute(Request $request)
     {
-        $orderInfoArray  =  $request->all();
-
-        // create new order with member id
-        $order = Order::create($orderInfoArray);
-
-        // return new created order
-        return $order;
+        $parameter = Refund::composeParamater($request->except('_token'));
+        // print "<pre>";
+        $parameter = Refund::preparePostRequestEncryption($parameter);
+        // print_r($parameter);
+        $response  = Refund::sendPostRequest($parameter);
+        // dd($response);
+        if($response['Status'] == 'SUCCESS') {
+            Order::find($request->get('id'))->update(['status'=>'Refunded Successfully', 'refund_response'=>serialize($response)]);
+            return redirect()->back()->with('status', 'Product successfully refunded.');
+        } else {
+            return redirect()->back()->with('error', 'Ophs! something wrong! Status ' . $response['Status']);
+        }
     }
 }

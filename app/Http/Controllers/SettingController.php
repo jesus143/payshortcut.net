@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Order;
+use App\Setting;
 
-class OrderController extends Controller
+class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +14,19 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $marchant_id     = Setting::where('key', 'marchant_id')->first()->value;
+        $hash_key        = Setting::where('key', 'hash_key')->first()->value;
+        $hash_iv         = Setting::where('key', 'hash_iv')->first()->value;
+        $refund_sandbox  = Setting::where('key', 'refund_sandbox')->first()->value;
 
-        $orders = Order::orderBy('id', 'desc')->get();
+        $settings = [
+            'marchant_id' =>$marchant_id,
+            'hash_key' =>$hash_key,
+            'hash_iv' =>$hash_iv,
+            'refund_sandbox' =>$refund_sandbox,
+        ];
 
-
-
-        return view('pages/order/order', compact('orders'));
-
+        return view('pages/setting/spgateway-refund', compact('settings'));
     }
 
     /**
@@ -41,7 +47,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except('_token');
+        foreach($data as $key => $value ){
+            $total = Setting::where('key', $key)->count();
+            if($total  < 1) {
+                Setting::create(['key'=>$key, 'value'=>$value]);
+            } else {
+                Setting::where('key', $key)->update(['key'=>$key, 'value'=>$value]);
+            }
+        }
+
+        return redirect()->back()->with('status', 'Successfully updated');
     }
 
     /**
@@ -52,9 +68,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $order = Order::find($id)->toArray();
-
-        return view('pages/order/order-details', compact('order', 'content_post'));
+        //
     }
 
     /**
@@ -89,16 +103,5 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function apiStore(Request $request)
-    {
-        $orderInfoArray  =  $request->all();
-
-        // create new order with member id
-        $order = Order::create($orderInfoArray);
-
-        // return new created order
-        return $order;
     }
 }

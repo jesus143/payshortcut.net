@@ -54,3 +54,10 @@ function curlGetRequest($getData, $url) {
 
     return json_decode($output, true);
 }
+
+function addpadding($string, $blocksize = 32) {
+    $len = strlen($string);
+    $pad = $blocksize - ($len % $blocksize);
+    $string .= str_repeat(chr($pad), $pad);
+    return $string;
+}
