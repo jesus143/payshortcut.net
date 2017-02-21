@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Member;
 use Input;
+use DB;
 
 class MemberController extends Controller
 {
@@ -89,7 +90,14 @@ class MemberController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        DB::transaction(function($id) use ($id)
+        {
+            DB::table('members')->where('id', $id)->delete();
+            DB::table('orders')->where('member_id', $id)->delete();
+        });
+
+        return redirect(route('member.index'))->with('status', 'Successfully deleted');
     }
 
     public function testing()

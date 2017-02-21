@@ -6,11 +6,7 @@
 
         <div class="col-md-2 ">
             <div class="panel panel-default">  
-                <ul class="list-group">
-                    <li class="list-group-item">Activities</li> 
-                    <li class="list-group-item"><a href="#">Members</a></li> 
-                    <li class="list-group-item">Orders</li> 
-                </ul>
+                @include('pages/sidebar/menu')
             </div>
         </div> 
         <div class="col-md-10">

@@ -9,6 +9,7 @@
         <th>telephone</th>
         <th>country</th>
         <th>Details</th>
+        <th>Registered At</th>
     </tr>
     </thead>
     <tfoot>
@@ -19,6 +20,7 @@
         <th>telephone</th>
         <th>country</th>
         <th>Details</th>
+        <th>Registered At</th>
     </tr>
     </tfoot>
     <tbody>
@@ -29,7 +31,8 @@
                 <td> {{$member->email}} </td>
                 <td> {{$member->telephone}} </td>
                 <td> {{$member->country}} </td>
-                <td> <a href="{{route('member.show', $member->id)}}"> Details </td>
+                <td> <a href="{{route('member.show', $member->id)}}"> Details </a> </td>
+                <td> {{time_elapsed_string($member->created_at)}} </td>
             </tr>
         @endforeach
     </tbody>

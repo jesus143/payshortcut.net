@@ -13,15 +13,7 @@
                     <div class="panel-heading">Member Lists</div>
                     <div class="panel-body">
 
-                        @if(session('status'))
-                            <div class="alert alert-success">
-                                {{session('status')}}
-                            </div>
-                        @elseif(session('error'))
-                            <div class="alert alert-danger">
-                                {{session('error')}}
-                            </div>
-                        @endif
+
 
                         <table class="table table-hover">
                             <thead>
@@ -57,7 +49,6 @@
                                 <input type="button" value="Refund" class="alert alert-danger" onClick="refund_confirmation({{$order['id']}})" />
                             </form>
                         @endif
-                        {{--<input type="submit" class="alert alert-danger" value="Delete" />--}}
 
                     </div>
                 </div>

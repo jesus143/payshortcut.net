@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+        return view('pages/theme/startbootstrap-grayscale-gh-pages/index');
+})->middleware('guest');
 
 Auth::routes();
 

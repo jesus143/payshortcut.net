@@ -9,6 +9,18 @@
             </div>
             <div class="col-md-10">
                 <div class="panel panel-default">
+
+                    @if(session('status'))
+                        <div class="alert alert-success">
+                            {{session('status')}}
+                        </div>
+                    @elseif(session('error'))
+                        <div class="alert alert-danger">
+                            {{session('error')}}
+                        </div>
+                    @endif
+
+
                     <div class="panel-heading">Member Lists</div>
                     <div class="panel-body">
                         @include("pages.member.member-table");

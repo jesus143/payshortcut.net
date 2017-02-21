@@ -13,6 +13,7 @@
         <th>Amt</th>
         <th>Trade No</th>
         <th>Details</th>
+        <th>Ordered At</th>
     </tr>
     </thead>
     <tfoot>
@@ -26,6 +27,7 @@
         <th>Amt</th>
         <th>Trade No</th>
         <th>Details</th>
+        <th>Ordered At</th>
     </tr>
     </tfoot>
     <tbody>
@@ -40,6 +42,7 @@
             <td> {{$order->merchant_order_no}} </td>
             <td> {{$order->amt}} </td>
             <td> <a href="{{route('order.show', $order->id)}}"> Details</a> </td>
+            <td> {{time_elapsed_string($order->created_at)}} </td>
         </tr>
     @endforeach
     </tbody>

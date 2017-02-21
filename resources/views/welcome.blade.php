@@ -74,14 +74,10 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                  
-                </div>
-                <p>
-                Welcome to pay shortcut 
-                </p>
-
                 
+                <div class="title m-b-md"> 
+                </div> 
+
             </div>
         </div>
     </body>
