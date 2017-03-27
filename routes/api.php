@@ -21,9 +21,16 @@ Route::get('/test', function() {
     return ['name' => 'Taylor'];
 });
 
+
+
+
 Route::post('member/create', 'MemberController@apiStore');
 Route::post('order/create', 'OrderController@apiStore');
 Route::get('member/get', 'MemberController@apiGetMember');
+Route::get('member/get-by-mail', 'MemberController@apiGetMemberByEmail');
 Route::get('member/get/order', 'MemberController@apiGetMemberOrder');
+
+
+
 
 

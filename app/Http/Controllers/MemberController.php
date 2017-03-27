@@ -161,4 +161,14 @@ class MemberController extends Controller
 
         return  $sorted->values()->all();
     }
+
+    public function apiGetMemberByEmail()
+    {
+
+        $email = Input::get('email');
+
+        $member = Member::where('email', $email)->get();
+
+        return $member;
+    }
 }
