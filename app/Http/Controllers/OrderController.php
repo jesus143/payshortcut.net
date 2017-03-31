@@ -100,19 +100,41 @@ class OrderController extends Controller
 
         // return new created order
         return $order;
-    }
- 
+    } 
+
     public function getOrderDetail($id) 
     { 
-        $order = Order::find($id)->toArray(); 
-
+        $order = Order::find($id)->toArray();  
         return $order; 
-    }
+    } 
 
+    /**
+     * [apiGetMemberOrderByTitle get latest subscription of specific user and can be called as api in sendright subscription]
+     * @param  [type] $user_id       [This is the specific user ping or deactivated]
+     * @param  [type] $product_title [ This is to set the of the query] 
+     */
     public function apiGetMemberOrderByTitle($user_id, $product_title)
     {
-        $orders = Order::where('member_id', $user_id)->where('title', $product_title)->orderBy('id', 'desc')->get()->first()->toArray();
-
+        $orders = Order::where('member_id', $user_id)->where('title', $product_title)->orderBy('id', 'desc')->get()->first()->toArray(); 
         return $orders;
-    }
-}
+    }   
+
+    /**
+     * [updateSubscriptionStatus This will allow subscription update status to deactivate and call be called as api in spgateway cancell subscription credit card]
+     * @param  [type] $id [order id passed from a ping] 
+     */
+    public function updateSubscriptionStatus($id)
+    {  
+        // instantiate
+        $order = Order::find($id);      
+        
+        // update status to deactivated 
+        $response = $order->update(['status' => 'deactivated']);    
+             
+        if($response) {   
+            return json_encode(['response'=>'update success', 'order_id'=>$id]);
+        } else {
+            return json_encode(['response'=>'update failed', 'order_id'=>$id]); 
+        } 
+    } 
+} 

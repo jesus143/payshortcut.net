@@ -33,6 +33,8 @@ Route::get('order/{id?}', 'OrderController@getOrderDetail');
 Route::get('order/get/sendright/subscription/{user_id?}/{order_title?}', 'OrderController@apiGetMemberOrderByTitle');
 
 
+Route::get('order/update/status/{id?}', 'OrderController@updateSubscriptionStatus');
+
 
 
 
