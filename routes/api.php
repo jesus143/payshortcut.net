@@ -29,6 +29,9 @@ Route::post('order/create', 'OrderController@apiStore');
 Route::get('member/get', 'MemberController@apiGetMember');
 Route::get('member/get-by-mail', 'MemberController@apiGetMemberByEmail');
 Route::get('member/get/order', 'MemberController@apiGetMemberOrder');
+Route::get('order/{id?}', 'OrderController@getOrderDetail');
+Route::get('order/get/sendright/subscription/{user_id?}/{order_title?}', 'OrderController@apiGetMemberOrderByTitle');
+
 
 
 

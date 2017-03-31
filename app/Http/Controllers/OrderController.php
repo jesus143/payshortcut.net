@@ -101,4 +101,18 @@ class OrderController extends Controller
         // return new created order
         return $order;
     }
+ 
+    public function getOrderDetail($id) 
+    { 
+        $order = Order::find($id)->toArray(); 
+
+        return $order; 
+    }
+
+    public function apiGetMemberOrderByTitle($user_id, $product_title)
+    {
+        $orders = Order::where('member_id', $user_id)->where('title', $product_title)->orderBy('id', 'desc')->get()->first()->toArray();
+
+        return $orders;
+    }
 }

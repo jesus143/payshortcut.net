@@ -7,6 +7,7 @@ use App\Member;
 use Input;
 use DB;
 
+
 class MemberController extends Controller
 {
     /**
@@ -161,6 +162,7 @@ class MemberController extends Controller
 
         return  $sorted->values()->all();
     }
+
 
     public function apiGetMemberByEmail()
     {
