@@ -36,6 +36,8 @@ Route::get('order/get/sendright/subscription/{user_id?}/{order_title?}', 'OrderC
 Route::get('order/update/status/{id?}', 'OrderController@updateSubscriptionStatus');
 
 
+ 
+Route::get('order/test/create', 'OrderController@testCreate'); 
 
 
 

@@ -13,6 +13,12 @@ function changeDashToSpaceUcLetter($string)
  */
 function curlPostRequest($postData, $url)
 {
+    
+    print "<Br> post request data";
+    print_r($postData); 
+    print "<br> url " . $url; 
+
+
     $ch = curl_init($url);
 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -27,6 +33,7 @@ function curlPostRequest($postData, $url)
     // do anything you want with your response
     var_dump($response);
 
+ 
     return json_decode($response, true);
 }
 
@@ -36,11 +43,15 @@ function curlPostRequest($postData, $url)
  * @param $url
  * @return mixed
  */
-function curlGetRequest($getData, $url) {
+    function curlGetRequest($getData, $url, $type="")
+    {
+        if($type!='full') {
+            $getData = http_build_query($getData, "", "&");
+            $url = $url . '?' . $getData;
+        }
 
-    $getData = http_build_query($getData, "", "&");
 
-    $url = $url . '?' . $getData;
+        print " full url " . $url; 
 
     $ch = curl_init();
 

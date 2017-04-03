@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use App\Member;
 
 class OrderController extends Controller
 {
@@ -93,11 +94,19 @@ class OrderController extends Controller
 
     public function apiStore(Request $request)
     {
-        $orderInfoArray  =  $request->all();
+    
+        // order info array
+        $orderInfoArray  =  $request->all(); 
 
         // create new order with member id
         $order = Order::create($orderInfoArray);
-
+    
+        // only create sendright account if purchased sendright product
+        if( strtolower($request->get('title')) == 'sendright lite plan') {  
+            // create user sendright account
+            $this->createNewSendirhgtAccount($request->get('member_id'));  
+        } 
+    
         // return new created order
         return $order;
     } 
@@ -137,4 +146,52 @@ class OrderController extends Controller
             return json_encode(['response'=>'update failed', 'order_id'=>$id]); 
         } 
     } 
+
+
+    public function testCreate()
+    {
+
+        $orderInfo = [
+            'member_id' => 36,
+            'status' => 'success',
+            'merchant_id' => '1234567',
+            'version'        => '1.1',
+            'response_type' => 'String',
+            'check_value' => '1234456789',
+            'time_stamp' => date("Y-m-d h:i:s"),
+            'merchant_order_no' => '123',
+            'amt' => '100',
+            'hash_key' => '1234dasda',
+            'hash_iv' => 'ASD123',
+            'trade_no' => '12321',
+            'token_value' => '2asdasd',
+            'token_life' => '1233232',
+        ]; 
+        // print "<pre>";
+        // print_r($orderInfo); 
+        // print "</pre>"; 
+        curlPostRequest($orderInfo, url('api/order/create'));  
+       
+    }
+ 
+    public function createNewSendirhgtAccount($member_id)
+    { 
+        /**
+         * This function allow to create account in sendright, when purchase a product from woocomerce
+         * [$member_id this is the member id] 
+         */
+        // $member_id = $orderInfo['member_id'];   
+        $member    = Member::find($member_id); 
+        $email     = $member->email;  
+        $fullname  =  ucfirst(strtolower($member->first_name)) . ' ' . ucfirst(strtolower($member->last_name)); 
+        $password  = 'secret';   
+        $user['email']    = $email;
+        $user['name']     = $fullname;
+        $user['password'] = $password; 
+        print "<pre>"; 
+        print_r($user); 
+        curlPostRequest($user, 'http://sendright.net/api/user-new/create-post');  
+        // curlGetRequest(null, 'http://sendright.net/api/user-new/create/' . $email . '/'. $fullname . '/' . $password, 'full');   
+
+    }
 } 
