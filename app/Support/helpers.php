@@ -14,9 +14,9 @@ function changeDashToSpaceUcLetter($string)
 function curlPostRequest($postData, $url)
 {
     
-    print "<Br> post request data";
-    print_r($postData); 
-    print "<br> url " . $url; 
+    //    print "<Br> post request data";
+    //    print_r($postData);
+    //    print "<br> url " . $url;
 
 
     $ch = curl_init($url);

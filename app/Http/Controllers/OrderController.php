@@ -102,11 +102,11 @@ class OrderController extends Controller
         $order = Order::create($orderInfoArray);
     
         // only create sendright account if purchased sendright product
-        if( strtolower($request->get('title')) == 'sendright lite plan') {  
+        if( strpos(strtolower($request->get('title')), 'send right lite') > -1) {  
             // create user sendright account
             $this->createNewSendirhgtAccount($request->get('member_id'));  
         } 
-    
+        
         // return new created order
         return $order;
     } 
@@ -124,7 +124,7 @@ class OrderController extends Controller
      */
     public function apiGetMemberOrderByTitle($user_id, $product_title)
     {
-        $orders = Order::where('member_id', $user_id)->where('title', $product_title)->orderBy('id', 'desc')->get()->first()->toArray(); 
+        $orders = Order::where('member_id', $user_id)->where('title', 'like',  "%" . $product_title . "%")->orderBy('id', 'desc')->get()->first()->toArray(); 
         return $orders;
     }   
 
