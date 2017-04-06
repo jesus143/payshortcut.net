@@ -191,7 +191,11 @@ class OrderController extends Controller
         print "<pre>"; 
         print_r($user); 
         curlPostRequest($user, 'http://sendright.net/api/user-new/create-post');  
-        // curlGetRequest(null, 'http://sendright.net/api/user-new/create/' . $email . '/'. $fullname . '/' . $password, 'full');   
-
+        // curlGetRequest(null, 'http://sendright.net/api/user-new/create/' . $email . '/'. $fullname . '/' . $password, 'full');    
     }
+
+
+    
+
+
 } 
