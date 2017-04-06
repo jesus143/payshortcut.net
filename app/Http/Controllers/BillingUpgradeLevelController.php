@@ -40,14 +40,12 @@ class BillingUpgradeLevelController extends Controller
 
         // get total results if check email and order id exist already
         $isAlreadySetUpgradeLevel = BillingUpgradeLevel::where('email', $request->get('email'))->where('order_id', $request->get('order_id'))->count();
-
-
+ 
         // insert to level upgrade if not exist
         if($isAlreadySetUpgradeLevel == false) {
-            return BillingUpgradeLevel::create($request->all());
+            BillingUpgradeLevel::create($request->all());
         }
-
-
+ 
         // get latest billing upgrade of the specific user
         $latestUpgrade = BillingUpgradeLevel::where('email', $request->get('email'))->where('order_id', $request->get('order_id'))->get()->toArray();
 
