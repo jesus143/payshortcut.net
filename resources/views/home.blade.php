@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row">
 
+    test
         <div class="col-md-2 ">
             <div class="panel panel-default">  
                 @include('pages/sidebar/menu')

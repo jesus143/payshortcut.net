@@ -1,4 +1,81 @@
-<?php
+<?php 
+ 
+use Carbon\Carbon; 
+
+
+
+
+
+function human_readable_date_time($date)
+{
+    return date("F j, Y, g:i a", strtotime($date));
+} 
+
+function print_r_pre($array, $title='')
+{
+    print "<pre>"; 
+        print "\n" . $title;
+        print_r($array); 
+    print "</pre>"; 
+}
+function createDateTimeCarbon($dateTime)
+    { 
+        if(empty($dateTime)) {
+            $dateTime = Carbon::now(); 
+        }  
+ 
+        $d1   = explode(" ", $dateTime); 
+        $date = explode("-", $d1[0]); 
+        $time = explode(":", $d1[1]); 
+     
+        $hour = $time[0];
+        $min  = $time[1];
+        $sec  = $time[2]; 
+
+        $year  = $date[0];
+        $month = $date[1];
+        $day   = $date[2];
+        
+        $explodedDateTime = ['year'=>$year, 'month'=>$month, 'day'=>$day, 'hour'=>$hour, 'min'=>$min, 'sec'=>$sec]; 
+  
+        return Carbon::create($explodedDateTime['year'], $explodedDateTime['month'], $explodedDateTime['day'],  $explodedDateTime['hour'], $explodedDateTime['min'], $explodedDateTime['sec']); 
+    }
+
+
+
+function getLimitStart($page=0, $limit=5) { 
+        $limit_start = 0;       
+        $limit_end   = 0;       
+        // $limit       = 5; 
+     
+        if($page == 0) {   
+            $limit_start = 0;
+            $limit_end   = $limit;   
+        } else { 
+            $limit_start = $limit * $page; 
+            $limit_end = $limit;  
+        }   
+        return $limit_start;
+}
+
+function getLimitEnd($page=0, $limit=5) { 
+        $limit_start = 0;       
+        $limit_end   = 0;       
+        // $limit       = 5; 
+     
+        if($page == 0) {   
+            $limit_start = 0;
+            $limit_end   = $limit;   
+        } else { 
+            $limit_start = $limit * $page; 
+            $limit_end = $limit;  
+        }   
+        return $limit_end;
+}
+
+ 
+
+
 
 function changeDashToSpaceUcLetter($string)
 {
@@ -28,10 +105,10 @@ function curlPostRequest($postData, $url)
     $response = curl_exec($ch);
 
     // close the connection, release resources used
-    curl_close($ch);
-
+    curl_close($ch); 
+    
     // do anything you want with your response
-    var_dump($response);
+    // var_dump($response);
 
  
     return json_decode($response, true);

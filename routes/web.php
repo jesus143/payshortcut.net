@@ -23,8 +23,16 @@ Route::get('member/test', 'MemberController@testing');
 
 
 Route::post('refund/execute', 'RefundController@execute')->name('refund.execute');
+
+ 
 // resource
 Route::resource('member', 'MemberController');
 Route::resource('order', 'OrderController');
 Route::resource('setting', 'SettingController');
+
+
+
+Route::group(["prefix"=>"debugging"], function(){
+	Route::get('monthly-cycle-billing', 'BillingMonthlySubscriptionController@BillingMonthlySubscriptionTrigger'); 
+}); 
 

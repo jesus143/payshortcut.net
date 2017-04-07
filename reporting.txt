@@ -1,0 +1,61 @@
+Hi Rocky, 
+
+Update for April 6, 2017 
+  
+Fix roadblock with renew monthly billing tigger 
+Work with cronjobs triggers for level and subscription
+Create billing_cylcle_batch, migration, controller 
+create schedule command 
+  
+Todo for April 7, 2017 
+
+Via billing query user, limit user check by 10 batch - 
+After query based on limit and batch if result is 0 then restore batch with 0 - 30m
+Get latest subscription for specific user "send right light 1000, 2500, 5000" for a specific   - 2h 
+Check created_at for latest subscription and see if already passed with 1 month   - 1h
+If found that date is already passed 1 month then   
+  - check if subscription upgraded on level upgrade database - 30m
+  - trigger next payment of the subscription via curl - 1h 
+  - insert new order with new order info with price and member info, this will allow history of the customer - 1h 
+Set up cronjobs call every 1min 5min below for check subscription and auto pay monthly billing cycle - 1h
+
+Thanks, 
+
+Best regards,
+Jesus Erwin Suarez
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Insert new member
+  - Detect if exist via email then just get the member id number
+  - Detect if not exist then insert all information for member then return member id
+  - Insert new order id with member id
+  - Display all the member
+  - Display member details with orders with button refund
+
+
+
+
+
+
+
+
+Connect the payshortcut api inert member and order when success order and this should work both agree payment and credit card payment
+Create settings for merchant id. hash key, haskey iv for refund
+
+
