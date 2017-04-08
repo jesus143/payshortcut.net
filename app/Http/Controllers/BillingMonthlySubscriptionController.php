@@ -26,8 +26,8 @@ class BillingMonthlySubscriptionController extends Controller
 		$billingCycleBatch = BillingCycleBatch::first();  
 
  		// compose batch for limit start and limit end  		
- 	    $limit_start  = 0; // getLimitStart($billingCycleBatch->batch, 5); 
- 	    $limit_end    = 5; //getLimitEnd($billingCycleBatch->batch, 5);   
+ 	    $limit_start  =   getLimitStart($billingCycleBatch->batch, 10); 
+ 	    $limit_end    =  getLimitEnd($billingCycleBatch->batch, 10);   
  
  	    print "\n batch " . $billingCycleBatch->batch ;
  	    print "\n limit start " . $limit_start ;

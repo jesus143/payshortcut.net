@@ -38,7 +38,7 @@ class BillingMonthlySubscriptionCommand extends Command
      */
     public function handle()
     {
-        $billing = new BillingMonthlySubscriptionTriggerptionController();
+        $billing = new BillingMonthlySubscriptionController();
         $billing->BillingMonthlySubscriptionTrigger();
     }
 }
