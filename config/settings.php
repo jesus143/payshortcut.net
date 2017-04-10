@@ -1,5 +1,10 @@
 <?php  
 return [  
+    
+     'sendRight' => [
+        'title'=>'Send Right Light'
+     ],
+
      'orderInfoSendright' => [  
          'level' =>[  
             '1' => [

@@ -102,8 +102,8 @@ class OrderController extends Controller
         $order = Order::create($orderInfoArray);
     
         // only create sendright account if purchased sendright product
-        if( strpos(strtolower($request->get('title')), 'send right lite') > -1) {  
-            // create user sendright account
+        if( strpos(strtolower($request->get('title')), 'send right light') > -1) {  
+            // create user sendright account             
             $this->createNewSendirhgtAccount($request->get('member_id'));  
         } 
         

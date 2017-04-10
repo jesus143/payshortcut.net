@@ -26,7 +26,7 @@ class BillingMonthlySubscriptionController extends Controller
 		$billingCycleBatch = BillingCycleBatch::first();  
 
  		// compose batch for limit start and limit end  		
- 	    $limit_start  =   getLimitStart($billingCycleBatch->batch, 10); 
+ 	    $limit_start  =  getLimitStart($billingCycleBatch->batch, 10); 
  	    $limit_end    =  getLimitEnd($billingCycleBatch->batch, 10);   
  
  	    print "\n batch " . $billingCycleBatch->batch ;
@@ -81,6 +81,10 @@ class BillingMonthlySubscriptionController extends Controller
 				 			$orderUpgrade 				 =	$orderInfoSendright['level'][$billingUpgrade->level]; 
 				 			$latestSubscription['title'] =  $orderUpgrade['title']; 
 				 			$latestSubscription['amt']   =  $orderUpgrade['price'];  
+
+
+				 			$billingUpgrade->status = 'finished'; 
+				 			$billingUpgrade->save();  
 				 		} else { 
 				 			print "\n no upgrade level";
 				 		} 
